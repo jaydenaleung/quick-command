@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 6px;
+}
+
+#input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+#output {
+  flex: 1;
+  margin: 6px 0 0;
+  padding: 6px;
+  overflow: auto;
+  background: #111;
+  color: #ddd;
+  font-size: 11px;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#hint {
+  margin: 4px 0 0;
+  font-size: 10px;
+  color: #666;
+}

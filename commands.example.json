@@ -1,0 +1,17 @@
+[
+  {
+    "trigger": "home",
+    "command": "cd ~",
+    "mode": "pty"
+  },
+  {
+    "trigger": "dir",
+    "command": "dir",
+    "mode": "pty"
+  },
+  {
+    "trigger": "notepad",
+    "command": "notepad",
+    "mode": "exec"
+  }
+]
