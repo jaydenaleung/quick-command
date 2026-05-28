@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Quick Command",
+  "version": "0.1.0",
+  "identifier": "com.jayde.quick-command",
+  "build": {
+    "beforeDevCommand": "npm run dev:web",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build:web",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Quick Command",
+        "label": "main",
+        "width": 720,
+        "height": 120,
+        "visible": false,
+        "resizable": false,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "focus": true,
+        "transparent": true,
+        "shadow": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": false
+  }
+}

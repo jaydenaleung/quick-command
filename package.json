@@ -1,23 +1,29 @@
 {
   "name": "quick-command",
   "version": "0.1.0",
-  "description": "Spotlight-style command bar with shell and custom commands",
-  "main": "./out/main/index.js",
+  "author": "Jayde",
+  "description": "Spotlight-style desktop command bar powered by Tauri",
+  "type": "module",
   "scripts": {
-    "dev": "electron-vite dev",
-    "build": "electron-vite build",
-    "start": "electron-vite preview",
-    "postinstall": "electron-rebuild -f -w node-pty"
+    "dev": "node scripts/kill-stale.mjs && tauri dev",
+    "dev:web": "vite",
+    "build": "tauri build",
+    "build:web": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "node-pty": "^1.0.0"
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-global-shortcut": "^2.0.0",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^22.10.0",
-    "electron": "^33.2.1",
-    "electron-rebuild": "^3.2.9",
-    "electron-vite": "^2.3.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11"
+    "vite": "^6.0.0"
   }
 }

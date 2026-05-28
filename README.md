@@ -1,12 +1,15 @@
 # Quick Command
 
-Minimal Electron command bar: run a shell, type commands, use custom triggers from `commands.json`.
+Spotlight-style desktop command bar for Windows and macOS. This version is powered by Rust + Tauri and opens as a popup overlay from a global shortcut.
 
-## Must-haves (MVP)
+## Features
 
-1. **Terminal** — PowerShell/cmd on Windows, `$SHELL` on macOS via `node-pty`
-2. **Command bar** — text input + scrollable output
-3. **Custom commands** — `commands.json` in app user data (see `commands.example.json`)
+- **Global hotkey popup** — default `CommandOrControl+Shift+Space`, editable from the menu
+- **Desktop overlay** — always-on-top spotlight-style bar near the bottom of the active screen
+- **Shell execution** — runs with your selected shell (`PowerShell`, `cmd`, `bash`, etc.)
+- **Custom commands** — managed in the menu panel (trigger + mode + command)
+- **Menu-first settings** — theme, shell, shortcut, and custom command management all in the menu
+- **Stable layout** — command log is shown above the bar while the bar stays fixed
 
 ## Dev
 
@@ -15,13 +18,8 @@ npm install
 npm run dev
 ```
 
-- Toggle window: **Ctrl+Shift+Space**
-- Enter runs input: matching **trigger** uses custom command; otherwise line goes to the shell
-- Edit commands: `%APPDATA%/quick-command/commands.json` (Windows) or equivalent userData path
-
-## Build
+## Build desktop app
 
 ```bash
 npm run build
-npm start
 ```
