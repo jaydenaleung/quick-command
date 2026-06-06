@@ -187,6 +187,7 @@ export function CommandBar(): JSX.Element {
           <TerminalLog
             entries={logs}
             height={logPanelHeight}
+            pending={busy}
             onHeightChange={handleLogHeightChange}
             onResizeEnd={handleLogResizeEnd}
           />

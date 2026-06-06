@@ -5,6 +5,7 @@ import type { LogEntry } from '../core/types'
 type TerminalLogProps = {
   entries: LogEntry[]
   height: number
+  pending?: boolean
   onHeightChange: (height: number) => void
   onResizeEnd?: (height: number) => void
 }
@@ -35,6 +36,7 @@ function groupEntries(entries: LogEntry[]): LogEntry[][] {
 export function TerminalLog({
   entries,
   height,
+  pending = false,
   onHeightChange,
   onResizeEnd
 }: TerminalLogProps): JSX.Element | null {
@@ -52,7 +54,7 @@ export function TerminalLog({
     if (Math.abs(fit - heightRef.current) >= 1) {
       onHeightChange(fit)
     }
-  }, [entries, onHeightChange])
+  }, [entries, pending, onHeightChange])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0, behavior: 'auto' })
@@ -94,15 +96,29 @@ export function TerminalLog({
       style={{ height, minHeight: LOG_PANEL_MIN }}
     >
       <div ref={scrollRef} className="terminal-scroll">
-        {groups.map((group) => (
-          <div key={group[0].id} className="log-group">
-            {group.map((entry) => (
-              <pre key={entry.id} className={`terminal-line terminal-line-${entry.type}`}>
-                {formatLine(entry)}
-              </pre>
-            ))}
-          </div>
-        ))}
+        {groups.map((group, groupIndex) => {
+          const awaitingResponse =
+            pending && groupIndex === 0 && group.length === 1 && group[0].type === 'input'
+
+          return (
+            <div key={group[0].id} className="log-group">
+              {group.map((entry) => (
+                <pre key={entry.id} className={`terminal-line terminal-line-${entry.type}`}>
+                  {formatLine(entry)}
+                </pre>
+              ))}
+              {awaitingResponse && (
+                <pre className="terminal-line terminal-line-pending" aria-live="polite" aria-busy="true">
+                  <span className="pending-dots">
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                  </span>
+                </pre>
+              )}
+            </div>
+          )
+        })}
       </div>
       <div
         className="log-resize-handle"

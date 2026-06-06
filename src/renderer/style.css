@@ -3,9 +3,9 @@
 [data-theme='dark'] {
   --fg: #f5f5f5;
   --muted: #737373;
-  --panel-bg: rgba(32, 32, 34, 0.88);
+  --panel-bg: rgba(32, 32, 34, 0.94);
   --panel-border: rgba(255, 255, 255, 0.12);
-  --panel-shadow: 0 2px 20px rgba(0, 0, 0, 0.35), 0 0 48px rgba(255, 255, 255, 0.03);
+  --panel-shadow: 0 8px 28px -10px rgba(0, 0, 0, 0.5);
   --input-text: #ffffff;
   --input-placeholder: #737373;
   --terminal-input: #737373;
@@ -22,9 +22,9 @@
 [data-theme='light'] {
   --fg: #18181b;
   --muted: #71717a;
-  --panel-bg: rgba(255, 255, 255, 0.94);
+  --panel-bg: rgba(255, 255, 255, 0.97);
   --panel-border: rgba(0, 0, 0, 0.08);
-  --panel-shadow: 0 2px 24px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 255, 255, 0.35);
+  --panel-shadow: 0 8px 28px -10px rgba(0, 0, 0, 0.18);
   --input-text: #18181b;
   --input-placeholder: #a1a1aa;
   --terminal-input: #71717a;
@@ -41,9 +41,9 @@
 [data-theme='dim'] {
   --fg: #d4d4d8;
   --muted: #71717a;
-  --panel-bg: rgba(42, 42, 46, 0.9);
+  --panel-bg: rgba(42, 42, 46, 0.94);
   --panel-border: rgba(255, 255, 255, 0.1);
-  --panel-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.02);
+  --panel-shadow: 0 8px 28px -10px rgba(0, 0, 0, 0.45);
   --input-text: #e4e4e7;
   --input-placeholder: #71717a;
   --terminal-input: #71717a;
@@ -61,9 +61,9 @@
   :root[data-theme='system'] {
     --fg: #18181b;
     --muted: #71717a;
-    --panel-bg: rgba(255, 255, 255, 0.94);
+    --panel-bg: rgba(255, 255, 255, 0.97);
     --panel-border: rgba(0, 0, 0, 0.08);
-    --panel-shadow: 0 2px 24px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 255, 255, 0.35);
+    --panel-shadow: 0 8px 28px -10px rgba(0, 0, 0, 0.18);
     --input-text: #18181b;
     --input-placeholder: #a1a1aa;
     --terminal-input: #71717a;
@@ -82,9 +82,9 @@
   :root[data-theme='system'] {
     --fg: #f5f5f5;
     --muted: #737373;
-    --panel-bg: rgba(32, 32, 34, 0.88);
+    --panel-bg: rgba(32, 32, 34, 0.94);
     --panel-border: rgba(255, 255, 255, 0.12);
-    --panel-shadow: 0 2px 20px rgba(0, 0, 0, 0.35), 0 0 48px rgba(255, 255, 255, 0.03);
+    --panel-shadow: 0 8px 28px -10px rgba(0, 0, 0, 0.5);
     --input-text: #ffffff;
     --input-placeholder: #737373;
     --terminal-input: #737373;
@@ -128,9 +128,10 @@ body {
   align-items: stretch;
   min-height: 100%;
   width: 100%;
-  padding: 8px 12px 6px;
+  padding: 14px 16px 12px;
   pointer-events: none;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .shell > * {
@@ -148,15 +149,11 @@ body {
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   box-shadow: var(--panel-shadow);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
 }
 
 .hud-menu {
   background: var(--menu-bg);
   border: 1px solid var(--panel-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Command bar — fixed pill at bottom of stack */
@@ -263,6 +260,37 @@ body {
 
 .terminal-line-error {
   color: var(--terminal-error);
+}
+
+.terminal-line-pending {
+  color: var(--terminal-output);
+  opacity: 0.65;
+}
+
+.pending-dots span {
+  animation: pending-dot 1.2s ease-in-out infinite;
+}
+
+.pending-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.pending-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pending-dot {
+  0%,
+  20% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0.15;
+  }
 }
 
 .log-group {

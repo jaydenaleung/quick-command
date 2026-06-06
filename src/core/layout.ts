@@ -2,9 +2,9 @@ export const LOG_PANEL_MIN = 56
 export const LOG_PANEL_DEFAULT = 220
 export const BAR_HEIGHT = 56
 export const STACK_GAP = 10
-export const SHELL_PADDING_Y = 12
-/** Extra logical px so the top of the log is not clipped by rounding / titlebar */
-export const RESIZE_SLACK = 20
+export const SHELL_PADDING_Y = 13
+/** Extra logical px so shadows are not clipped at the window edge */
+export const RESIZE_SLACK = 8
 
 /**
  * Content-based height: grows with output up to LOG_PANEL_DEFAULT.
